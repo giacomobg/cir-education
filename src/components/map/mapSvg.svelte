@@ -68,10 +68,10 @@
 			'source': 'schools',
 			'layout': {},
 			'paint': {
-				'circle-color': '#70c5f9',
+				'circle-color': '#BF8C19',
 				'circle-opacity': 0.8,
 				'circle-stroke-color': "#222",
-				'circle-stroke-width': 1,
+				'circle-stroke-width': 0,
 				'circle-stroke-opacity': 0.5
 			}
 		});
