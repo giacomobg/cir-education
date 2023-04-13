@@ -1,0 +1,2 @@
+sed -i "s/nsmg-000/nsmg-0$1/g" deploy
+sed -i "s/nsmg-000/nsmg-0$1/g" deploy-live

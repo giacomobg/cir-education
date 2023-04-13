@@ -1,0 +1,5 @@
+pnpm run build
+git add .
+git commit -m "deploy test";
+git push
+aws s3 sync --acl public-read ./public s3://nsmg-projects-public/test/nsmg-110
