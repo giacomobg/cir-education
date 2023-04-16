@@ -7,96 +7,8 @@ body {
 	color: #252524;
 }
 
-a {
-	color: #252524;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-	text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: #d82d1d;
-}
-
-
-label {
-	display: block;
-}
-
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-}
-input, select, textarea {
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #333;
-	border-radius: 2px;
-}
-
-input:disabled {
-	color: #ccc;
-}
-
-div.radio-cell label,button {
-	height: 32px;
-	margin: 2px;
-	padding: 0 10px;
-	font-size: 12px;
-	border: none;
-	outline: 1px solid #666;
-}
-
-button.large-button {
-	height: 48px;
-	font-size: 16px;
-	padding: 0 20px;
-}
-
-button {
-	color: #333;
-	background-color: #fff;
-}
-
-button.primary-button {
-	background-color: black;
-	color: white;
-	outline: none;
-}
-
-button.secondary-button {
-	background-color: #d82d1d;
-	color: white;
-	outline: none;
-}
-
-button.ghost-button {
-	outline: none;
-}
-
-button:not(:disabled):hover {
-	opacity: 75%;
-}
-
-button:not(:disabled):active {
-	opacity: 50%;
-}
-
-button:focus {
-	border: #d82d1d solid 2px;
-	margin: 2px 0;
-}
-
-button:disabled {
-	background-color: #ddd;
-	color: #888;
-}
-
 .embed-container {  
   border-top: 1px solid rgba(37, 37, 36, 0.25);
-	font-family: 'Reg. Modn Regular', sans-serif;
 	font-size: 0.667rem;
 	line-height: 0.888rem;
     /* background-image: url(https://nsmg-projects-public.s3.eu-west-2.amazonaws.com/common/NewStatesman_logo.png); */
@@ -139,13 +51,12 @@ button:disabled {
     margin: 8px;
  }
 
-h3 {
+/* h3 {
 	margin: 0;
     padding: 0;
     font-size: 1.333rem;
     line-height: 1.556rem;
     margin-top: 0.888em;
-    font-family: 'Reg. Modn Bold', sans-serif;
 }
 
 h4 {
@@ -157,21 +68,19 @@ h4 {
     opacity: 0.8;
     font-weight: normal;
     padding-bottom: 0.667rem;
-    font-family: 'Reg. Modn Regular', sans-serif;
 }
 
 h5 {
 	margin: 0;
 	padding: 0;
 	font-size: 0.667rem;
-}
+} */
 
 .source-text {
     color: #7f7f7f;
     margin: 8px 0;
     font-size: 0.667rem;
     line-height: 0.888rem;
-    font-family: 'Reg. Modn Regular', sans-serif;
 }
 .source-text a {
 	color: #7f7f7f;
@@ -180,5 +89,4 @@ h5 {
     color: #252524;
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-color: #d82d1d;
 }

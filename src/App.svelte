@@ -8,7 +8,6 @@
 
   import Map from './graphics/map.svelte';
   let isLoaded=false;
-  let locations;
 
 
   onMount(() => {
@@ -16,28 +15,13 @@
       setTimeout(() => isLoaded = true, 250);
   });
 
-  // TODO: load in countries individually as requested?
-  fetch('./data/damage-locations.json', {mode: 'cors', cache: 'no-store' })
-  .then(response => { return response.json() })
-  .then(data => {
-    locations= feature(data, data.objects["damage-locations"]).features.filter(d => d.geometry)
-                .map(d => ({
-                  ...d,
-                  lat: +d.properties.Lat, 
-                  lon: +d.properties.Long,
-                  timestamp: +d.properties.Timestamp
-                }));
-  });
-  
 </script>
 
 <div class="embed-container">
-  <h3>Damage to educational establisments in Ukraine</h3>
-  <h4>With change over time</h4>
+  <h1>Damage to schools and other places of education in Ukraine</h1>
+  <h2>With change over time</h2>
   <div class="vis-container">
-    {#if locations}
-      <Map {locations} />
-    {/if}
+      <Map />
   </div>
   <!-- <div class="source-text">Note:</div> -->
   <div class="source-text">Source: Centre for Information Resilience</div>
