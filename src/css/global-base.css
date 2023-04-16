@@ -60,7 +60,6 @@ label {
 	width: 100%;
 	min-height: 20em;
 	height: 100%;
-	padding: 8px;
 	box-sizing: border-box;
 	margin-bottom: 8px;
 }
@@ -71,4 +70,8 @@ label {
 
 .layercake-container {
 	height: 100%;
+}
+
+.mapboxgl-canvas-container.mapboxgl-interactive {
+	cursor: auto !important;
 }

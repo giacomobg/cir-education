@@ -6,6 +6,7 @@
 
   let locations;
   let oblasts;
+  let ukraine;
 
   // const createMap = (node) => {
   //   let m = L.map(node,{})
@@ -97,14 +98,23 @@
                 // }));
   });
 
+  fetch('./data/ukraine.json', {mode: 'cors', cache: 'no-store' })
+    .then(response => { return response.json() })
+    .then(data => {
+      ukraine= feature(data, data.objects.features).features.filter(d => d.geometry)
+                // .map(d => ({
+                //   ...d
+                // }));
+  });
+
 </script>
 
 <svelte:window />
 
 <div class="chart-container">
-  {#if locations && oblasts}
+  {#if locations && oblasts && ukraine}
     <MapSvg
-      {locations} {oblasts}
+      {locations} {oblasts} {ukraine}
     />
   {/if}
 </div>

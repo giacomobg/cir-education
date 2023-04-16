@@ -19,6 +19,7 @@
   
     export let locations;
 	export let oblasts;
+	export let ukraine;
     export let time;
 	let hoveredOblastId = null;
 
@@ -88,6 +89,14 @@
 			},
 			'generateId': true
 		})
+		map.addSource('ukraine', {
+			'type': 'geojson',
+			'data': {
+				'type': 'FeatureCollection',
+				'features': ukraine
+			},
+			'generateId': true
+		})
 
 		map.addLayer({
 			'id': 'oblasts-line',
@@ -112,6 +121,16 @@
 					0
 				],
 				'fill-color': "#98a2b3"
+			}
+		})
+		map.addLayer({
+			'id': 'ukraine-line',
+			'type': 'line',
+			'source': 'ukraine',
+			'layout': {},
+			'paint': {
+				// 'fill-opacity': 0,
+				'line-color': "#666",
 			}
 		})
 		map.addLayer({
