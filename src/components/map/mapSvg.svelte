@@ -239,7 +239,7 @@
 		height: 600px;
 		width: 100vw;
 		/* max-width: 600px; */
-		max-height: 85vh;
+		max-height: 55vh;
 	}
 
   </style>

@@ -45,9 +45,9 @@
 </script>
 
 <div class="embed-container">
-  <h1>Damage to schools and other places of education in Ukraine</h1>
-  <h2>Monthly from February 2022 to February 2023</h2>
-  <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
+  <h1>Damage to schools and colleges in Ukraine</h1>
+  <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2>
+  <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={false}></TimeControls>
   <div class="vis-container">
       <Map {time} />
       <!-- <Cartesian>
@@ -60,10 +60,14 @@
 
 <style>
   /* MAP_INCL */
+  h1, h2, .source-text {
+    margin-left: 10px;
+  }
   .vis-container {
     position: relative; /* 100% turns into 100vh if you don't */
+    /* height: 250px; */
     max-height: 50em;
-    height: 95vh;
+    height: 55vh;
   }
   /* MAP_INCL_END */
 
