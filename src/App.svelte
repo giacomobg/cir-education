@@ -45,15 +45,15 @@
 </script>
 
 <div class="embed-container">
-  <h1>Damage to educational faci in Ukraine</h1>
+  <h1>Damage to educational facilities in Ukraine</h1>
   <h2>From February 2022 to February 2023</h2>
   <!-- <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
   <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
   <div class="vis-container">
       <Map {time} />
-      <!-- <Cartesian>
+      <Cartesian>
         <Column/> 
-      </Cartesian> -->
+      </Cartesian>
   </div>
   <!-- <div class="source-text">Note:</div> -->
   <div class="source-text">Source: Centre for Information Resilience</div>
