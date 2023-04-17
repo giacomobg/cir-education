@@ -45,9 +45,10 @@
 </script>
 
 <div class="embed-container">
-  <h1>Damage to schools and colleges in Ukraine</h1>
-  <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2>
-  <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={false}></TimeControls>
+  <h1>Damage to educational faci in Ukraine</h1>
+  <h2>From February 2022 to February 2023</h2>
+  <!-- <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
+  <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
   <div class="vis-container">
       <Map {time} />
       <!-- <Cartesian>

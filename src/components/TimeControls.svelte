@@ -43,22 +43,15 @@
 </script>
 
 <div class="time-controls-container">
-    <!-- <button on:click={goBack} class="back">&lt;</button> -->
-    <!-- <p class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</p> -->
-    <!-- <button on:click={goForwards} class="forward">&gt;</button> -->
+    <button on:click={goBack} class="back">&lt;</button>
+    <p class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</p>
+    <button on:click={goForwards} class="forward">&gt;</button>
     <button on:click={() => {playing = !playing; if (playing) {animate();play();}} } class="play-pause">{playing ? 'Pause' : (timeIndex == timePeriods.length-1 ? 'Replay' : 'Play')}</button>
-    <!-- <br class="clear"/>     -->
+    <br class="clear"/>    
 </div>
 
 <style>
 
-    div {
-        float:right;
-        position:absolute;
-        top:0px;
-        right:-10px;
-
-    }
     button, p {
         float: left;
     }
