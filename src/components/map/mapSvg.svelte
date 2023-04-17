@@ -21,6 +21,21 @@
 	export let oblasts;
 	export let ukraine;
     export let time;
+	// let timeStart = getEpoch(time);
+	// let timeEnd = getEpoch(getTimeEnd());
+	let timeStart;
+	let timeEnd;
+	$: time,
+		timeStart = getEpoch(time),
+		timeEnd = getEpoch(getTimeEnd());
+	
+	function getTimeEnd() {
+		return new Date(time.getFullYear(), time.getMonth()+1);
+	};
+	function getEpoch(t) {
+		return t.getTime()/1000; // seconds not ms
+	}
+
 	let hoveredOblastId = null;
 
 	let ukraineBounds = [[22.2, 52.6], [40.9, 44.2]]
@@ -28,35 +43,26 @@
 	let map;
 	let mapLoaded = false;
 	let style = "mapbox://styles/mapbox/light-v10";
-	// let style = {
-	// 	'version': 8,
-	// 	'sources': {
-	// 		'raster-tiles': {
-	// 			'type': 'raster',
-	// 			'tiles': [
-	// 				'https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png'
-	// 			],
-	// 			'tileSize': 256,
-	// 		}
-	// 	},
-	// 	'layers': [{
-	// 		'id': 'raster',
-	// 		'type': 'raster',
-	// 		'source': 'raster-tiles',
-	// 		'minzoom': 2,
-	// 		'maxzoom': 14
-	// 	}],
-	// 	center: [31.5,48.6],
-	// 	zoom: 5,
-	// 	attributionControl: false
-	// };
+	let transition = 500;
 
+	let filterSchools;
+	let filterOther;
+	$: filterSchools = ['all',
+		['>=', ['get', 'timestamp'], timeStart],
+		['<', ['get', 'timestamp'], timeEnd]
+	];
+	$: filterOther = ['!', filterSchools];
+	// $: filterOther = ['any',
+	// 	['<', ['get', 'timestamp'], timeStart],
+	// 	['>=', ['get', 'timestamp'], timeEnd]
+	// ];
+	
 	onMount(() => {
 		map = new mapbox.Map({
 			container: 'map',
 			style,
 			center: [31.5, 48.6],
-			zoom: 5,
+			zoom: 3,
 			minZoom: 2.01,
 			maxZoom: 13.99
 		});
@@ -73,7 +79,7 @@
 	}); // end onMount
 
 	function addLocations() {
-		console.log('Add layer to map');
+		// Add sources
         map.addSource('schools', {
 			'type': 'geojson',
 			'data': {
@@ -98,13 +104,13 @@
 			'generateId': true
 		})
 
+		// Add layers
 		map.addLayer({
 			'id': 'oblasts-line',
 			'type': 'line',
 			'source': 'oblasts',
 			'layout': {},
 			'paint': {
-				// 'fill-opacity': 0,
 				'line-color': "#98a2b3",
 			}
 		})
@@ -133,16 +139,33 @@
 				'line-color': "#666",
 			}
 		})
+
 		map.addLayer({
-			'id': 'schools',
+			'id': 'schools-other',
 			'type': 'circle',
 			'source': 'schools',
 			'layout': {},
+			'filter': filterOther,
 			'paint': {
-				'circle-color': '#BF8C19',
-				'circle-opacity': 0.6,
+				'circle-color': "#889999",
+				'circle-opacity': 0.5,
 				// 'circle-stroke-color': "#222",
 				'circle-stroke-width': 0,
+				// 'circle-stroke-opacity': 0.5
+			}
+		});
+		map.addLayer({
+			'id': 'schools-current',
+			'type': 'circle',
+			'source': 'schools',
+			'layout': {},
+			'filter': filterSchools,
+			'paint': {
+				'circle-color': "#BF8C19",
+				'circle-opacity': 0.9,
+				'circle-opacity-transition': {'duration': transition},
+				// 'circle-stroke-color': "#222",
+				'circle-stroke-width': 0
 				// 'circle-stroke-opacity': 0.5
 			}
 		});
@@ -192,6 +215,18 @@
 	function handleMousemove(feature) {
 		dispatch('mousemove', feature);
 	}
+
+	$: if (time && map && map.getLayer('schools-other') && map.getLayer('schools-current')) {
+		map.setFilter('schools-other', ['all', true])
+		map.setPaintProperty('schools-current', 'circle-opacity', 0);
+		setTimeout(() => {
+			map.setFilter('schools-current', filterSchools);
+			map.setPaintProperty('schools-current', 'circle-opacity', 1);
+			setTimeout(() => {
+				map.setFilter('schools-other', filterOther);
+			}, transition);
+		}, transition);
+	};
 
 
   </script>
