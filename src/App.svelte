@@ -8,8 +8,23 @@
 
   import Map from './graphics/map.svelte';
   import Cartesian from './graphics/cartesian.svelte';
+  import Cartesiand3 from './graphics/cartesiand3.svelte';
   import Column from './components/cartesian/Column.svelte';
+  import Columnd3 from './components/cartesian/Columnd3.svelte';
   import TimeControls from './components/TimeControls.svelte';
+
+  import data from './data/data.csv'
+  console.log(data);
+
+  let config = {
+    xKey: "oblast",
+    yKey: [0,1],
+    xKeyCode: "oblast_code",
+  }
+  // data.forEach(d => {
+  //   console.log(d);
+  //   // d[key] = date(d[key])
+  // });
 
   let isLoaded=false;
 
@@ -45,21 +60,37 @@
 </script>
 
 <div class="embed-container">
+
   <h1>Damage to educational facilities in Ukraine</h1>
   <h2>February 2022 to February 2023</h2>
-  <!-- <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
+
   <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={false}></TimeControls>
-  <div class="vis-container">
+
+  <div class="grid">
+    <!-- <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
+    <div class="vis-container">
       <Map {time} />
-      <!-- <Cartesian>
-        <Column/> 
-      </Cartesian> -->
+    </div>
+    <div class="vis-container">
+      <Cartesiand3 {config}>
+        <Columnd3 {data} {config}/> 
+      </Cartesiand3>
+    </div>
+    <!-- <div class="source-text">Note:</div> -->
+    <div class="source-text">Source: Centre for Information Resilience</div>
   </div>
-  <!-- <div class="source-text">Note:</div> -->
-  <div class="source-text">Source: Centre for Information Resilience</div>
+
 </div>
 
 <style>
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    grid-gap: 1em;
+  }
+
   /* MAP_INCL */
   h1, h2, .source-text {
     margin-left: 10px;
@@ -69,6 +100,8 @@
     /* height: 250px; */
     max-height: 50em;
     height: 55vh;
+    grid-column: span 1;
+    grid-row: span 1;
   }
   /* MAP_INCL_END */
 

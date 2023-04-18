@@ -237,7 +237,7 @@
 
 	#map {
 		height: 600px;
-		width: 100vw;
+		/* width: 100vw; */
 		/* max-width: 600px; */
 		max-height: 55vh;
 	}
