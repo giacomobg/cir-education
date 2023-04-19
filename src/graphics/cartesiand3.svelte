@@ -3,7 +3,7 @@
 	// import AxisY from '../components/cartesian/AxisY.svelte';
     import { scaleLinear, scaleBand } from 'd3-scale';
     import { onMount, setContext } from 'svelte';
-    
+    import { timeParse, timeFormat } from 'd3-time-format';
     import { select } from 'd3-selection';
     import { axisLeft, axisTop } from 'd3-axis';
     import 'd3-transition';
@@ -61,12 +61,17 @@
             .domain(dates)
             .range([0, height]);
         
-
+        let format = timeFormat("%b '%y");
         let yAxis = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            .call(axisLeft(yScale));
+            .call(axisLeft(yScale)
+                .tickFormat((tick) => {
+                    return format(timeParse("%m/%Y")(tick))
+                })
+            );
         yAxis.select('.domain')
             .attr("stroke-width", 0);
+        yAxis.style("font-family", "raleway");
         // let xAxis = svg.append("g")
         //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         //     .call(axisTop(xScale)
@@ -81,9 +86,9 @@
 
         // highlight current time
         select("rect.highlight-rect")
-            .attr("x", margin.left)
+            .attr("x", 3)
             .attr("y", yScale(dates[timeIndex]) + margin.top)
-            .attr("width", width)
+            .attr("width", width + margin.left - 30)
             .attr("height", yScale.bandwidth())
             .style("fill", "none")
             // .style("fill", "#F5EAD1")
@@ -103,6 +108,9 @@
 
 </script>
 
+    <h2>Monthly verified incidents by oblast</h2>
+    <p>Hover over to see them on the map</p>
+
     <svg id="graphic">
         <!-- <AxisX gridlines={false} formatTick={config?.formatX}/>
         <AxisY formatTick={config?.formatY} /> -->
@@ -120,8 +128,26 @@
     </svg>
 
 <style>
+
+    h2 {
+        margin-top: 0px;
+    }
     svg {
         width: 100%;
-        height: calc(100% - 50px);
+        height: calc(100% - 55px);
     }
+
+    @media (max-width:599px) {
+        h2 {
+            margin-top: 10px;
+        }
+    }
+    @media (max-width:315px) {
+        svg {
+           height: calc(100% - 85px);
+        }
+    }
+
+
+
 </style>

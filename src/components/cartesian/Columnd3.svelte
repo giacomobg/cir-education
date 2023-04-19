@@ -17,10 +17,7 @@
     export let yScale;
     export let innerXScale;
 
-    console.log(data);
-
     let chart_data = dates.map(date => ( {key: date, value: data[date]} ));
-    console.log(chart_data)
 
     onMount(() => {
         let g = select("g.column."+data.oblast)
@@ -42,7 +39,7 @@
             .enter()
             .append("text")
             .attr("x", d => xScale(data.oblast) + innerXScale(d.value) + 2 )
-            .attr("y", d => yScale(d.key) + yScale.bandwidth() -3)
+            .attr("y", d => yScale(d.key) + yScale.bandwidth()/4*3)
             .text(d => d.value)
             .style("fill", '#666')
 

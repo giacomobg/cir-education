@@ -17,9 +17,9 @@
   let config = {
     margin: {
       top: 13,
-      right: 10,
+      right: 3,
       bottom: 10,
-      left: 60
+      left: 50
     },
     xKey: "oblast",
     yKey: [0,1],
@@ -66,7 +66,7 @@
 <div class="embed-container">
 
   <h1>Damage to educational facilities in Ukraine</h1>
-  <!-- <h2>February 2022 to February 2023</h2> -->
+  <h2>Move the slider to change month of the invasion and highlight <span class="yellow-circle">&#9679</span> incidents on the map and in the <div class="key-yellow-box">yellow box</div> on the bar chart.</h2>
 
   <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
 
@@ -76,13 +76,12 @@
       <Map {time} />
     </div>
     <div class="vis-container">
-      <h2>Hover over an Oblast to see it on the map</h2>
       <Cartesiand3 {data} {config} {timeIndex}>
       </Cartesiand3>
     </div>
     <!-- <div class="source-text">Note:</div> -->
-    <div class="source-text">Source: Centre for Information Resilience</div>
   </div>
+  <div class="source-text">Source: Centre for Information Resilience</div>
 
 </div>
 
@@ -94,10 +93,18 @@
     position: relative;
     column-gap: 1em;
   }
+  .key-yellow-box {
+    display: inline-block;
+    border: #BF8C19 2px solid;
+  }
+  .yellow-circle {
+    color: #BF8C19;
+  }
 
   /* MAP_INCL */
   h1, h2, .source-text {
-    margin-left: 1px;
+    /* margin-left: 1px; */
+    line-height: 1.4em;
   }
   .vis-container {
     position: relative; /* 100% turns into 100vh if you don't */
@@ -112,6 +119,7 @@
       grid-column: span 2;
     }
   }
+
   /* MAP_INCL_END */
 
 </style>

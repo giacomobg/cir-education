@@ -60,7 +60,9 @@
     <!-- <h2 class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
     <button on:click={() => {playing = !playing; if (playing) {animate();play();}} } class="play-pause">{playing ? 'Pause' : (timeIndex == timePeriods.length-1 ? 'Replay' : 'Play')}</button>
     <div class="slider-container">
-        <Slider bind:value min=0 max={timePeriods.length-1} >
+        <Slider bind:value min=0 max={timePeriods.length-1}
+            on:input={() => playing=false}
+            >
             <h2 class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2>
             <h2 class="line">|</h2>
             <h2 class="circle">&#9679</h2>
@@ -75,7 +77,24 @@
 <style>
 
     .time-controls-container {
-        margin-top: 40px;
+        padding-top: 20px;
+        overflow-x: hidden;
+    }
+    .slider-container {
+        margin-bottom: 20px;
+    }
+    @media (max-width:450px) {
+        .time-controls-container {
+           padding-top: 0px;
+        }
+        .slider-container {
+            margin-top: 30px;
+        }
+        .play-pause {
+            display: block;
+            margin: 0 auto;
+            float: none;
+        }
     }
     button, p, .slider-container {
         float: left;
@@ -83,6 +102,13 @@
     button {
         margin-left: 20px;
         width: 100px;
+    }
+    button:hover {
+        opacity: 0.7;
+    }
+    button:focus {
+        margin-top: -2px;
+        border: #222 solid 3px;
     }
     .month {
         position: absolute;
