@@ -80,14 +80,13 @@
         //     .attr("x2", -xScale.bandwidth()/2)
 
         // highlight current time
-        svg.append("rect")
-            .classed("highlight-rect", true)
+        select("rect.highlight-rect")
             .attr("x", margin.left)
             .attr("y", yScale(dates[timeIndex]) + margin.top)
             .attr("width", width)
             .attr("height", yScale.bandwidth())
             .style("fill", "none")
-            .style("fill", "#F5EAD1")
+            // .style("fill", "#F5EAD1")
             .style("stroke", "#BF8C19")
             .style("stroke-width", "2px")
 
@@ -105,9 +104,9 @@
 </script>
 
     <svg id="graphic">
-
         <!-- <AxisX gridlines={false} formatTick={config?.formatX}/>
         <AxisY formatTick={config?.formatY} /> -->
+        
         {#if xScale && yScale && innerXScale}
             {#each data as d}
                 <Columnd3 data={d} {config}
@@ -115,6 +114,9 @@
                 /> 
             {/each}
         {/if}
+
+        <rect class="highlight-rect"></rect>
+
     </svg>
 
 <style>

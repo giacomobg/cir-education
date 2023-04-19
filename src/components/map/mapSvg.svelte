@@ -38,7 +38,7 @@
 
 	let hoveredOblastId = null;
 
-	let ukraineBounds = [[22.2, 52.6], [40.9, 44.2]]
+	let ukraineBounds = [[27.2, 52.1], [40.9, 45.4]]
 
 	let map;
 	let mapLoaded = false;
@@ -111,7 +111,7 @@
 			'source': 'oblasts',
 			'layout': {},
 			'paint': {
-				'line-color': "#98a2b3",
+				'line-color': "#A1A5AD",
 			}
 		})
 		map.addLayer({
@@ -126,7 +126,7 @@
 					0.6,
 					0
 				],
-				'fill-color': "#98a2b3"
+				'fill-color': "#A1A5AD"
 			}
 		})
 		map.addLayer({
@@ -137,6 +137,7 @@
 			'paint': {
 				// 'fill-opacity': 0,
 				'line-color': "#666",
+				'line-width': 1.5
 			}
 		})
 
@@ -147,8 +148,8 @@
 			'layout': {},
 			'filter': filterOther,
 			'paint': {
-				'circle-color': "#889999",
-				'circle-opacity': 0.5,
+				'circle-color': "#566979",
+				'circle-opacity': 0.3,
 				// 'circle-stroke-color': "#222",
 				'circle-stroke-width': 0,
 				// 'circle-stroke-opacity': 0.5
@@ -164,9 +165,10 @@
 				'circle-color': "#BF8C19",
 				'circle-opacity': 0.9,
 				'circle-opacity-transition': {'duration': transition},
-				// 'circle-stroke-color': "#222",
-				'circle-stroke-width': 0
-				// 'circle-stroke-opacity': 0.5
+				'circle-stroke-color': "#222",
+				'circle-stroke-width': 1,
+				'circle-stroke-opacity': 0.9,
+				'circle-stroke-opacity-transition': {'duration': transition}
 			}
 		});
 
@@ -218,10 +220,12 @@
 
 	$: if (time && map && map.getLayer('schools-other') && map.getLayer('schools-current')) {
 		map.setFilter('schools-other', ['all', true])
-		map.setPaintProperty('schools-current', 'circle-opacity', 0);
+		map.setPaintProperty('schools-current', 'circle-opacity', 0)
+			.setPaintProperty('schools-current', 'circle-stroke-opacity', 0);
 		setTimeout(() => {
 			map.setFilter('schools-current', filterSchools);
-			map.setPaintProperty('schools-current', 'circle-opacity', 1);
+			map.setPaintProperty('schools-current', 'circle-opacity', 1)
+				.setPaintProperty('schools-current', 'circle-stroke-opacity', 1);
 			setTimeout(() => {
 				map.setFilter('schools-other', filterOther);
 			}, transition);

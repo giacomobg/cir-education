@@ -35,7 +35,7 @@
             .attr("y", function(d) { return yScale(d.key); })
             .attr("width", function(d) { return innerXScale(d.value); })
             .attr("height", yScale.bandwidth() )
-            .attr("fill", "#899")
+            .attr("fill", "#566979")
         
         g.selectAll("text.labels")
             .data(chart_data)

@@ -66,9 +66,9 @@
 <div class="embed-container">
 
   <h1>Damage to educational facilities in Ukraine</h1>
-  <h2>February 2022 to February 2023</h2>
+  <!-- <h2>February 2022 to February 2023</h2> -->
 
-  <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={false}></TimeControls>
+  <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
 
   <div class="grid">
     <!-- <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
@@ -92,12 +92,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
-    grid-gap: 1em;
+    column-gap: 1em;
   }
 
   /* MAP_INCL */
   h1, h2, .source-text {
-    margin-left: 10px;
+    margin-left: 1px;
   }
   .vis-container {
     position: relative; /* 100% turns into 100vh if you don't */
