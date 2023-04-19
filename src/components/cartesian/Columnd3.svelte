@@ -1,27 +1,55 @@
 <script>
 
+    import { onMount, getContext } from 'svelte';
+    import { select } from 'd3-selection';
+    import { text } from 'svelte/internal';
+
+    const dates = getContext("dates");
+    const oblasts = getContext("oblasts");
+    const oblast_codes = getContext("oblast_codes");
+    const max = getContext("max");
+
+
     export let data;
     export let config;
-
-    const dates = Object.keys(data[0]).filter(d => (d !== config?.xKey) & (d !== config?.xKeyCode));
-    data.forEach(d => {
-        dates.forEach(date => {
-            d[date] = +d[date]
-        })
-    });
+    let margin = config.margin;
+    export let xScale;
+    export let yScale;
+    export let innerXScale;
 
     console.log(data);
-    console.log(dates);
+
+    let chart_data = dates.map(date => ( {key: date, value: data[date]} ));
+    console.log(chart_data)
+
+    onMount(() => {
+        let g = select("g.column."+data.oblast)
+            .attr("transform", "translate(" + margin.left + "," + margin.top +")");
+        
+        g.selectAll("rect")
+            .data(chart_data)
+            .enter()
+            .append("rect")
+            .attr("class", d => data.oblast + " " + d.key)
+            .attr("x", xScale(data.oblast) )
+            .attr("y", function(d) { return yScale(d.key); })
+            .attr("width", function(d) { return innerXScale(d.value); })
+            .attr("height", yScale.bandwidth() )
+            .attr("fill", "#9a9")
+
+        g.append("text")
+            .datum(data.oblast)
+            .text(d => d)
+            .attr("x", 2+xScale(data.oblast))
+            .attr("y", -3)
+            // .attr("y", -5-15*(oblasts.indexOf(data.oblast)%2))
+        // g.append("line")
+        //     .attr("x1", xScale(data.oblast))
+        //     .attr("x2", xScale(data.oblast))
+        //     .attr("y2", -18-15*(oblasts.indexOf(data.oblast)%2))
+        //     .style("stroke", "#222")
+    })
 
 </script>
 
-<svg>
-
-</svg>
-
-<style>
-    svg {
-        width: 100%;
-        height: 100%;
-    }
-</style>
+<g class={"column " + data.oblast}></g>

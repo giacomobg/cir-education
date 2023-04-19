@@ -7,16 +7,20 @@
   import html2canvas from 'html2canvas';
 
   import Map from './graphics/map.svelte';
-  import Cartesian from './graphics/cartesian.svelte';
   import Cartesiand3 from './graphics/cartesiand3.svelte';
-  import Column from './components/cartesian/Column.svelte';
-  import Columnd3 from './components/cartesian/Columnd3.svelte';
   import TimeControls from './components/TimeControls.svelte';
 
   import data from './data/data.csv'
+    import { each } from 'svelte/internal';
   console.log(data);
 
   let config = {
+    margin: {
+      top: 50,
+      right: 10,
+      bottom: 10,
+      left: 60
+    },
     xKey: "oblast",
     yKey: [0,1],
     xKeyCode: "oblast_code",
@@ -72,8 +76,7 @@
       <Map {time} />
     </div>
     <div class="vis-container">
-      <Cartesiand3 {config}>
-        <Columnd3 {data} {config}/> 
+      <Cartesiand3 {data} {config} {timeIndex}>
       </Cartesiand3>
     </div>
     <!-- <div class="source-text">Note:</div> -->
@@ -97,11 +100,16 @@
   }
   .vis-container {
     position: relative; /* 100% turns into 100vh if you don't */
-    /* height: 250px; */
-    max-height: 50em;
-    height: 55vh;
+    height: 200px;
+    /* max-height: 50em; */
+    max-height: 35vh;
     grid-column: span 1;
     grid-row: span 1;
+  }
+  @media (max-width:599px) {
+    .vis-container {
+      grid-column: span 2;
+    }
   }
   /* MAP_INCL_END */
 

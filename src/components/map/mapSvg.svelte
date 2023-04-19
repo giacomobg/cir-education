@@ -236,10 +236,10 @@
   <style>
 
 	#map {
-		height: 600px;
+		height: 200px;
 		/* width: 100vw; */
 		/* max-width: 600px; */
-		max-height: 55vh;
+		max-height: 35vh;  /* This must match the one for vis-container in app.svelte !! */
 	}
 
   </style>
