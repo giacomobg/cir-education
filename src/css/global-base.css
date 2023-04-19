@@ -1,3 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,300italic,400italic&subset=latin,latin-ext);
+
+/* @font-face {
+    font-family: 'Raleway', sans-serif;
+	src: url(https://fonts.googleapis.com/css?family=Raleway:300,400,300italic,400italic&subset=latin,latin-ext)
+} */
+
 html, body {
 	position: relative;
 	scroll-behavior: smooth;
@@ -74,4 +81,14 @@ label {
 
 .mapboxgl-canvas-container.mapboxgl-interactive {
 	cursor: auto !important;
+}
+
+button {
+	margin-left: 4px;
+	padding: 6px;
+	color: white;
+	background-color: #666;
+	/* height: 16px; */
+	font-size: 16px;
+	border: #666 1px solid;
 }

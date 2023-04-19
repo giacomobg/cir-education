@@ -16,7 +16,7 @@
 
   let config = {
     margin: {
-      top: 50,
+      top: 13,
       right: 10,
       bottom: 10,
       left: 60
@@ -76,6 +76,7 @@
       <Map {time} />
     </div>
     <div class="vis-container">
+      <h2>Hover over an Oblast to see it on the map</h2>
       <Cartesiand3 {data} {config} {timeIndex}>
       </Cartesiand3>
     </div>
@@ -100,9 +101,9 @@
   }
   .vis-container {
     position: relative; /* 100% turns into 100vh if you don't */
-    height: 200px;
+    height: 300px;
     /* max-height: 50em; */
-    max-height: 35vh;
+    max-height: 80vh;
     grid-column: span 1;
     grid-row: span 1;
   }

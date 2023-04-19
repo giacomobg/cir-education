@@ -35,7 +35,16 @@
             .attr("y", function(d) { return yScale(d.key); })
             .attr("width", function(d) { return innerXScale(d.value); })
             .attr("height", yScale.bandwidth() )
-            .attr("fill", "#9a9")
+            .attr("fill", "#899")
+        
+        g.selectAll("text.labels")
+            .data(chart_data)
+            .enter()
+            .append("text")
+            .attr("x", d => xScale(data.oblast) + innerXScale(d.value) + 2 )
+            .attr("y", d => yScale(d.key) + yScale.bandwidth() -3)
+            .text(d => d.value)
+            .style("fill", '#666')
 
         g.append("text")
             .datum(data.oblast)

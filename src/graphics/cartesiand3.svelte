@@ -56,7 +56,7 @@
 
         innerXScale = scaleLinear()
             .domain([0, Math.max(...max)+2])
-            .range([0,xScale.bandwidth()]);
+            .range([0,xScale.bandwidth()-12]);
         yScale = scaleBand()
             .domain(dates)
             .range([0, height]);
@@ -98,7 +98,7 @@
         console.log(select("rect.highlight-rect")),
         select("rect.highlight-rect")
             .transition()
-            .duration(300)
+            .duration(600)
             .attr("y", yScale(dates[timeIndex]) + margin.top);
     }
 
@@ -120,6 +120,6 @@
 <style>
     svg {
         width: 100%;
-        height: 100%;
+        height: calc(100% - 50px);
     }
 </style>

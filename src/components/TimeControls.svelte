@@ -1,7 +1,7 @@
 <script>
     // import { createEventDispatcher } from 'svelte';
     // const dispatch = createEventDispatcher();
-    
+    import Slider from 'svelte-slider';    
 
     export let timePeriods;
     export let timeIndex;
@@ -43,6 +43,7 @@
 </script>
 
 <div class="time-controls-container">
+    
     <button on:click={goBack} class="back">&lt;</button>
     <p class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</p>
     <button on:click={goForwards} class="forward">&gt;</button>

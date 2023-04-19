@@ -58,6 +58,9 @@ dependencies:
   svelte-select:
     specifier: ^4.4.7
     version: 4.4.7
+  svelte-slider:
+    specifier: ^1.0.1
+    version: 1.0.1
   topojson-client:
     specifier: ^3.0.0
     version: 3.1.0
@@ -1441,6 +1444,10 @@ packages:
 
   /svelte-select@4.4.7:
     resolution: {integrity: sha512-fIf9Z8rPI6F8naHZ9wjXT0Pv5gLyhdHAFkHFJnCfVVfELE8e82uOoF0xEVQP6Kir+b4Q5yOvNAzZ61WbSU6A0A==}
+    dev: false
+
+  /svelte-slider@1.0.1:
+    resolution: {integrity: sha512-oK4L5Hzf7A4buGES4v0q2n2pbJFEE5jR/BC4fdBlPa1Y2Ni3T/9g5XTME7yqv3wLws0jRwkG515NDqqI0F/pAQ==}
     dev: false
 
   /svelte@3.42.6:
