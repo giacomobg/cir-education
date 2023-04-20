@@ -36,7 +36,7 @@
 		return t.getTime()/1000; // seconds not ms
 	}
 
-	let hoveredOblastId = null;
+	export let hoveredOblastId = null;
 
 	let ukraineBounds = [[27.2, 52.1], [40.9, 45.4]]
 
@@ -183,6 +183,7 @@
 					);
 				}
 				hoveredOblastId = e.features[0].id;
+				console.log(e.features[0]);
 				map.setFeatureState(
 					{ source: 'oblasts', id: hoveredOblastId },
 					{ hover: true }

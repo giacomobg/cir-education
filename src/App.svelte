@@ -11,9 +11,11 @@
   import TimeControls from './components/TimeControls.svelte';
 
   import data from './data/data.csv'
-    import { each } from 'svelte/internal';
+  import { each } from 'svelte/internal';
   console.log(data);
 
+  let hoveredOblastId;
+  $: console.log(hoveredOblastId)
   let config = {
     margin: {
       top: 13,
@@ -73,7 +75,7 @@
   <div class="grid">
     <!-- <h2>{time.toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
     <div class="vis-container">
-      <Map {time} />
+      <Map {time} bind:hoveredOblastId={hoveredOblastId}/>
     </div>
     <div class="vis-container">
       <Cartesiand3 {data} {config} {timeIndex}>

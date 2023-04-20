@@ -5,6 +5,7 @@
   import Select from 'svelte-select';
 
   export let time;
+  export let hoveredOblastId;
   let locations;
   let oblasts;
   let ukraine;
@@ -48,7 +49,7 @@
 <div class="chart-container">
   {#if locations && oblasts && ukraine && time}
     <MapSvg
-      {locations} {oblasts} {ukraine} {time}
+      {locations} {oblasts} {ukraine} {time} bind:hoveredOblastId={hoveredOblastId}
     />
   {/if}
 </div>
