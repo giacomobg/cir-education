@@ -14,6 +14,7 @@
     export let config;
     let margin = config.margin;
     export let timeIndex;
+    export let hoveredOblastId;
     let xScale;
     let yScale;
     let innerXScale;
@@ -88,7 +89,7 @@
         select("rect.highlight-rect")
             .attr("x", 3)
             .attr("y", yScale(dates[timeIndex]) + margin.top)
-            .attr("width", width + margin.left - 30)
+            .attr("width", width + margin.left - 20)
             .attr("height", yScale.bandwidth())
             .style("fill", "none")
             // .style("fill", "#F5EAD1")
@@ -99,7 +100,6 @@
 
     $: if (yScale) {
         timeIndex,
-        console.log(select("rect.highlight-rect")),
         select("rect.highlight-rect")
             .transition()
             .duration(600)
@@ -119,6 +119,7 @@
             {#each data as d}
                 <Columnd3 data={d} {config}
                 {xScale} {yScale} {innerXScale}
+                bind:hoveredOblastId={hoveredOblastId}
                 /> 
             {/each}
         {/if}

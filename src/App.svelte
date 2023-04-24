@@ -11,11 +11,10 @@
   import TimeControls from './components/TimeControls.svelte';
 
   import data from './data/data.csv'
-  import { each } from 'svelte/internal';
+    import { each } from 'svelte/internal';
   console.log(data);
 
   let hoveredOblastId;
-  $: console.log(hoveredOblastId)
   let config = {
     margin: {
       top: 13,
@@ -26,7 +25,7 @@
     xKey: "oblast",
     yKey: [0,1],
     xKeyCode: "oblast_code",
-  }
+  };
   // data.forEach(d => {
   //   console.log(d);
   //   // d[key] = date(d[key])
@@ -68,7 +67,7 @@
 <div class="embed-container">
 
   <h1>Damage to educational facilities in Ukraine</h1>
-  <h2>Move the slider to change month of the invasion and highlight <span class="yellow-circle">&#9679</span> incidents on the map and in the <div class="key-yellow-box">yellow box</div> on the bar chart.</h2>
+  <h2>Monthly incidents are <span class="yellow-circle">&#9679</span> highlighted on the map and in the <div class="key-yellow-box">yellow box</div> on the bar chart.</h2>
 
   <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
 
@@ -78,7 +77,7 @@
       <Map {time} bind:hoveredOblastId={hoveredOblastId}/>
     </div>
     <div class="vis-container">
-      <Cartesiand3 {data} {config} {timeIndex}>
+      <Cartesiand3 {data} {config} {timeIndex} bind:hoveredOblastId={hoveredOblastId}>
       </Cartesiand3>
     </div>
     <!-- <div class="source-text">Note:</div> -->

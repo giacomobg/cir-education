@@ -13,11 +13,9 @@
     // dispatch('message', timePeriods[timeIndex]);
 
     function goBack() {
-        console.log('go back');
         timeIndex = Math.max(0, timeIndex - 1);
     }
     function goForwards() {
-        console.log('go forwards');
         timeIndex = Math.min(timePeriods.length-1, timeIndex+1);
     }
 
@@ -40,9 +38,8 @@
     if (playing) play(); // set to play automatically from start
     $: if (!playing) clearInterval(intervalID);
 
-    $: console.log(timeIndex);
+    $: console.log("timeIndex: ", timeIndex);
     let value = [0,100];
-    $: console.log(value);
     $: setTimeIndex(value[0]);
     $: setValue(timeIndex);
 

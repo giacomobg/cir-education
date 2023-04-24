@@ -5,20 +5,19 @@
     import { text } from 'svelte/internal';
 
     const dates = getContext("dates");
-    const oblasts = getContext("oblasts");
-    const oblast_codes = getContext("oblast_codes");
-    const max = getContext("max");
-
 
     export let data;
     export let config;
     let margin = config.margin;
+    export let hoveredOblastId;
+    let currentOblastHovered = hoveredOblastId == data.oblast_code;
     export let xScale;
     export let yScale;
     export let innerXScale;
 
     let chart_data = dates.map(date => ( {key: date, value: data[date]} ));
 
+    console.log(yScale.range())
     onMount(() => {
         let g = select("g.column."+data.oblast)
             .attr("transform", "translate(" + margin.left + "," + margin.top +")");
@@ -56,6 +55,28 @@
         //     .style("stroke", "#222")
     })
 
+    function hover() {
+        hoveredOblastId = data.oblast_code;
+    }
+    function mouseLeave() {
+        hoveredOblastId = null;
+    }
+
+    $: currentOblastHovered = hoveredOblastId == data.oblast_code;
+
 </script>
 
 <g class={"column " + data.oblast}></g>
+<rect class="hover-rect"
+    x={xScale(data.oblast)+margin.left}
+    y=0
+    width={xScale.bandwidth()}
+    height={yScale.range()[1]+margin.top}
+    style={
+        "fill:"+ (currentOblastHovered ? "#507262" : '#fff')+";"+
+        "opacity:"+ (currentOblastHovered ? 0.4 : 0) +";"
+    }
+    on:mouseenter={hover}
+    on:mouseleave={mouseLeave}
+    >
+</rect>

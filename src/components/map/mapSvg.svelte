@@ -21,8 +21,8 @@
 	export let oblasts;
 	export let ukraine;
     export let time;
-	// let timeStart = getEpoch(time);
-	// let timeEnd = getEpoch(getTimeEnd());
+	export let hoveredOblastId = null;
+
 	let timeStart;
 	let timeEnd;
 	$: time,
@@ -36,7 +36,6 @@
 		return t.getTime()/1000; // seconds not ms
 	}
 
-	export let hoveredOblastId = null;
 
 	let ukraineBounds = [[27.2, 52.1], [40.9, 45.4]]
 
@@ -115,20 +114,31 @@
 			}
 		})
 		map.addLayer({
-			'id': 'oblasts-fill',
+			'id': 'oblasts-fill-hover',
 			'type': 'fill',
 			'source': 'oblasts',
 			'layout': {},
 			'paint': {
-				'fill-opacity': [
-					'case',
-					['boolean', ['feature-state', 'hover'], false],
-					0.6,
-					0
-				],
-				'fill-color': "#A1A5AD"
+				'fill-opacity': 0,
+				// 'fill-opacity': [
+				// 	'case',
+				// 	['boolean', ['feature-state', 'hover'], false],
+				// 	0.6,
+				// 	0
+				// ],
 			}
 		})
+		map.addLayer({
+			'id': 'oblasts-fill',
+			'type': 'fill',
+			'source': 'oblasts',
+			'filter': ['==', 'a', 'b'],
+			'layout': {},
+			'paint': {
+				'fill-opacity': 0.4,
+				'fill-color': "#507262"
+			}
+		});
 		map.addLayer({
 			'id': 'ukraine-line',
 			'type': 'line',
@@ -148,7 +158,7 @@
 			'layout': {},
 			'filter': filterOther,
 			'paint': {
-				'circle-color': "#566979",
+				'circle-color': "#506372",
 				'circle-opacity': 0.3,
 				// 'circle-stroke-color': "#222",
 				'circle-stroke-width': 0,
@@ -172,35 +182,24 @@
 			}
 		});
 
-		// When the user moves their mouse over the state-fill layer, we'll update the
-		// feature state for the feature under the mouse.
-		map.on('mousemove', 'oblasts-fill', (e) => {
-			if (e.features.length > 0) {
-				if (hoveredOblastId !== null) { // removes hover over old oblast
-					map.setFeatureState(
-						{ source: 'oblasts', id: hoveredOblastId },
-						{ hover: false }
-					);
-				}
-				hoveredOblastId = e.features[0].id;
-				console.log(e.features[0]);
-				map.setFeatureState(
-					{ source: 'oblasts', id: hoveredOblastId },
-					{ hover: true }
-				);
-			}
+		function filterByOblast() {
+			map.setFilter('oblasts-fill', [
+				'==',
+				['get', 'ADM1_PCODE'],
+				hoveredOblastId
+			]);
+		}
+		
+		map.on('mousemove', 'oblasts-fill-hover', (e) => {
+			hoveredOblastId = e.features[0].properties.ADM1_PCODE;
+			filterByOblast();
 		});
 		
 		// When the mouse leaves the state-fill layer, update the feature state of the
 		// previously hovered feature.
-		map.on('mouseleave', 'oblasts-fill', () => {
-			if (hoveredOblastId !== null) {
-				map.setFeatureState(
-					{ source: 'oblasts', id: hoveredOblastId },
-					{ hover: false }
-				);
-			}
+		map.on('mouseleave', 'oblasts-fill-hover', () => {
 			hoveredOblastId = null;
+			filterByOblast();
 		});
 
 		// map.on('mouseenter', (e) => {
@@ -232,7 +231,13 @@
 			}, transition);
 		}, transition);
 	};
-
+	$: if (map && map.getLayer('oblasts-fill')) {
+		map.setFilter('oblasts-fill', [
+			'==',
+			['get', 'ADM1_PCODE'],
+			hoveredOblastId
+		]);
+	}
 
   </script>
 
