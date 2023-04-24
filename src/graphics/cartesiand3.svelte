@@ -5,7 +5,7 @@
     import { onMount, setContext } from 'svelte';
     import { timeParse, timeFormat } from 'd3-time-format';
     import { select } from 'd3-selection';
-    import { axisLeft, axisTop } from 'd3-axis';
+    import { axisLeft } from 'd3-axis';
     import 'd3-transition';
     
     import Columnd3 from '../components/cartesian/Columnd3.svelte';
@@ -33,16 +33,7 @@
         Math.max(...Object.values(d).filter(val => Number.isInteger(val)))
     );
 
-    console.log(data);
-    console.log(dates);
-    console.log(oblasts);
-    console.log(max);
-
     setContext("dates", dates);
-    setContext("oblasts", oblasts);
-    setContext("oblast_codes", oblast_codes);
-    setContext("max", max);
-
 
     onMount(() => {
 

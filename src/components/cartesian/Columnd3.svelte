@@ -2,7 +2,6 @@
 
     import { onMount, getContext } from 'svelte';
     import { select } from 'd3-selection';
-    import { text } from 'svelte/internal';
 
     const dates = getContext("dates");
 
@@ -17,7 +16,6 @@
 
     let chart_data = dates.map(date => ( {key: date, value: data[date]} ));
 
-    console.log(yScale.range())
     onMount(() => {
         let g = select("g.column."+data.oblast)
             .attr("transform", "translate(" + margin.left + "," + margin.top +")");

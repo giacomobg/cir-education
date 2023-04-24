@@ -12,7 +12,7 @@
 
   import data from './data/data.csv'
     import { each } from 'svelte/internal';
-  console.log(data);
+  console.log('Data visualisation by Giacomo Boscaini-Gilroy');
 
   let hoveredOblastId;
   let config = {
@@ -26,10 +26,6 @@
     yKey: [0,1],
     xKeyCode: "oblast_code",
   };
-  // data.forEach(d => {
-  //   console.log(d);
-  //   // d[key] = date(d[key])
-  // });
 
   let isLoaded=false;
 

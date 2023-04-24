@@ -201,17 +201,6 @@
 			hoveredOblastId = null;
 			filterByOblast();
 		});
-
-		// map.on('mouseenter', (e) => {
-        //     console.log(e);
-        // });
-		// // 	var tooltipText = "This area of "+e.features[0].properties.SOVEREIGNT+" that would go underwater is <strong>" + e.features[0].properties.area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</strong> km²";
-		// // 	popup.setLngLat(e.lngLat).setHTML(tooltipText).addTo(map);
-		// // 	popup.trackPointer();
-		// map.on('mouseleave', () => {
-		// 	// map.setPaintProperty(id, 'fill-outline-color', "#D82D1D");
-		// // 	popup.remove();
-		// });
 	};
 
 	function handleMousemove(feature) {
