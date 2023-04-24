@@ -77,6 +77,7 @@
         "opacity:"+ (currentOblastHovered ? 0.4 : 0) +";"
     }
     on:mouseenter={hover}
+    on:touchstart={hover}
     on:mouseleave={mouseLeave}
     >
 </rect>

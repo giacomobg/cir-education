@@ -2,6 +2,7 @@
     // import { createEventDispatcher } from 'svelte';
     // const dispatch = createEventDispatcher();
     import Slider from '@bulatdashiev/svelte-slider';    
+    import { onMount } from 'svelte';
 
     export let timePeriods;
     export let timeIndex;
@@ -9,6 +10,8 @@
     let playing = animated;
     let animationDelay = 3000;
     let intervalID = null;
+    let svgWidth = null;
+
 
     // dispatch('message', timePeriods[timeIndex]);
 
@@ -50,6 +53,10 @@
         timeIndex = v;
     }
 
+    onMount(() => {
+        if (document.getElementById('axis')) svgWidth = document.getElementById('axis').getBoundingClientRect().width;
+    });
+
 
 </script>
 
@@ -65,6 +72,14 @@
             <h2 class="circle">&#9679</h2>
             
         </Slider>
+        <svg id="axis">
+            <line x1="20" y1="0" x2="20" y2="8" stroke="black"></line>
+            <text y="20">Feb '22</text>
+            {#if svgWidth}
+                <line x1={svgWidth-46} y1="0" x2={svgWidth-46} y2="8" stroke="black"></line>
+                <text x={svgWidth-70} y="20">Feb '23</text>
+            {/if}
+        </svg>
     </div>
     <!-- <button on:click={goBack} class="back">&lt;</button> -->
     <!-- <button on:click={goForwards} class="forward">&gt;</button> -->
@@ -78,6 +93,7 @@
         overflow-x: hidden;
     }
     .slider-container {
+        position: relative;
         margin-bottom: 20px;
     }
     @media (max-width:450px) {
@@ -93,6 +109,14 @@
             float: none;
         }
     }
+    svg#axis {
+        width: calc(100% + 50px);
+        height: 30px;
+        position:absolute;
+        left: -10px;
+        top: 25px;
+    }
+
     button, p, .slider-container {
         float: left;
     }
