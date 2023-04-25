@@ -1,0 +1,185 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,300italic,400italic&subset=latin,latin-ext);
+
+/* @font-face {
+    font-family: 'Raleway', sans-serif;
+	src: url(https://fonts.googleapis.com/css?family=Raleway:300,400,300italic,400italic&subset=latin,latin-ext)
+} */
+
+html, body {
+	position: relative;
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html, body {
+		scroll-behavior: auto;
+  }
+}
+
+body {
+	background: #fff;
+	margin: 0;
+	box-sizing: border-box;
+	/* font-family: initial;
+	font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; */
+	font: normal normal normal 40px/1.375em raleway,sans-serif;
+}
+
+h1, h2 {
+	font-weight: 400;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+label {
+	display: block;
+}
+
+.fallback {
+	max-width: 600px;
+	width: 100%;
+	object-fit: none;
+}
+
+.fallback-text {
+	max-width: 600px;
+	width: 100%;
+	text-align: center;
+}
+
+.isLoading{
+	opacity: 0;
+}
+
+.embed-container {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 280px;
+    border-top: 1px solid rgba(37, 37, 36, 0.25);
+    padding: 8px 0;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.chart-container {
+	width: 100%;
+	min-height: 20em;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.simple-chart-container {
+	height: 20em;
+}
+
+.layercake-container {
+	height: 100%;
+}
+
+.mapboxgl-canvas-container.mapboxgl-interactive {
+	cursor: auto !important;
+}
+
+button {
+	margin-left: 4px;
+	padding: 6px;
+	color: white;
+	background-color: #566979;
+	/* height: 16px; */
+	font-size: 16px;
+	border: #666 1px solid;
+}
+html {
+	font-size: 18px;
+	line-height: 28px;
+}
+
+body {
+	color: #252524;
+}
+
+.embed-container {  
+  border-top: 1px solid rgba(37, 37, 36, 0.25);
+	font-size: 0.667rem;
+	line-height: 0.888rem;
+    /* background-image: url(https://nsmg-projects-public.s3.eu-west-2.amazonaws.com/common/NewStatesman_logo.png); */
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: 100% 99%;
+	padding-bottom: 30px;
+    margin-bottom: 1.75rem;
+}
+
+.chart-container .tick text {
+	fill: #252524;
+	font-size: 0.667rem;
+	line-height: 0.888rem;
+}
+
+.chart-container .tick line {
+	stroke-width: 1px;
+	stroke: #ccc;
+	stroke-opacity: 0.5;
+	stroke-dasharray: 0;
+}
+
+.chart-container .y-axis .tick.tick-0 line {
+	stroke: #252524;
+	stroke-opacity: 1;
+}
+
+.chart-container .x-axis .baseline {
+	stroke-dasharray: 0;
+}
+
+.small-multiple-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+ }
+
+.small-multiple, .simple-chart-container {
+    box-sizing: border-box;
+    margin: 8px;
+ }
+
+/* h3 {
+	margin: 0;
+    padding: 0;
+    font-size: 1.333rem;
+    line-height: 1.556rem;
+    margin-top: 0.888em;
+}
+
+h4 {
+	margin: 0;
+    padding: 0;
+    font-size: 0.888rem;
+    line-height: 1.333rem;
+    color: #252524;
+    opacity: 0.8;
+    font-weight: normal;
+    padding-bottom: 0.667rem;
+}
+
+h5 {
+	margin: 0;
+	padding: 0;
+	font-size: 0.667rem;
+} */
+
+.source-text {
+    /* color: #444; */
+    margin: 8px 0;
+    font-size: 0.667rem;
+    line-height: 0.888rem;
+}
+.source-text a {
+	/* color: #444; */
+}
+.source-text a:hover {
+    color: #252524;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
