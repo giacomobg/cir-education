@@ -13,7 +13,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import mapbox from 'mapbox-gl';
 	// import 'mapbox-gl/dist/mapbox-gl.css';
-	mapbox.accessToken = "pk.eyJ1IjoiYmVsY3IiLCJhIjoiY2xndXhtcndsMDBwMDNtcXlya3pzN3JsYSJ9.G1yrr-VxRqWlSSymF2TkoA";
+	mapbox.accessToken = "pk.eyJ1IjoiZ2lhY29tb2JnIiwiYSI6ImNsZ2Zic21xNzAwNGozcXJyNnAzcXIybHAifQ.yDFQ-IvMuP_r6y4SESSSFw";
     
 	const dispatch = createEventDispatcher();
   
