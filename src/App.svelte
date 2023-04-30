@@ -71,7 +71,6 @@
   });
 
   function onResize() {
-    console.log('resize');
     unique = {};
   }
 
