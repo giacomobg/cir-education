@@ -101,7 +101,6 @@ body {
 }
 
 .embed-container {  
-  border-top: 1px solid rgba(37, 37, 36, 0.25);
 	font-size: 0.667rem;
 	line-height: 0.888rem;
     /* background-image: url(https://nsmg-projects-public.s3.eu-west-2.amazonaws.com/common/NewStatesman_logo.png); */
@@ -109,7 +108,6 @@ body {
     background-size: 130px;
     background-position: 100% 99%;
 	padding-bottom: 30px;
-    margin-bottom: 1.75rem;
 }
 
 .chart-container .tick text {

@@ -1,9 +1,3 @@
-<!-- <svelte:head>
-  <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
-
-</svelte:head> -->
-
-
 <script>
   import { onMount } from 'svelte';
   import { csvParse } from 'd3-dsv';
@@ -64,9 +58,7 @@
   $: timeIndex, time = getTime();
 
   onMount(() => {
-      console.log('pym child');
       pymChild = new pym.Child({renderCallback: onResize});
-      // isLoaded = true;
       setTimeout(() => isLoaded = true, 250);
   });
 
