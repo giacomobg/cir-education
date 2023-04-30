@@ -69,7 +69,7 @@
             >
             <h2 class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2>
             <h2 class="line">|</h2>
-            <h2 class="circle">&#9679</h2>
+            <h3 class="circle">&#11044</h3>
             
         </Slider>
         <svg id="axis">
@@ -117,7 +117,7 @@
         top: 25px;
     }
 
-    button, p, .slider-container {
+    button, .slider-container {
         float: left;
     }
     button {
@@ -143,18 +143,11 @@
     }
     .circle {
         position: absolute;
-        top: -25px;
+        top: -23px;
         left: -6px;
         color: #566979;
         /* width: 200px; */
         cursor: grab;
-    }
-
-    p {
-        width: 100px;
-        margin: 3px;
-        font-size: 24px;
-        line-height: 1.3em;
     }
 
     .clear {

@@ -1,3 +1,9 @@
+<svelte:head>
+  <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+</svelte:head>
+
+
 <script>
   import { onMount } from 'svelte';
   import { csvParse } from 'd3-dsv';
@@ -11,8 +17,12 @@
   import TimeControls from './components/TimeControls.svelte';
 
   import data from './data/data.csv'
-    import { each } from 'svelte/internal';
+  import { each } from 'svelte/internal';
+
   console.log('Data visualisation by Giacomo Boscaini-Gilroy');
+
+  let pymChild = null;
+  let unique = {};
 
   let hoveredOblastId;
   let config = {
@@ -54,16 +64,24 @@
   $: timeIndex, time = getTime();
 
   onMount(() => {
-      window.pymChild.sendHeight();
+      console.log('pym child');
+      pymChild = new pym.Child({renderCallback: onResize});
+      // isLoaded = true;
       setTimeout(() => isLoaded = true, 250);
   });
+
+  function onResize() {
+    console.log('resize');
+    unique = {};
+  }
+
 
 </script>
 
 <div class="embed-container">
 
   <h1>Damage to educational facilities in Ukraine</h1>
-  <h2>Monthly incidents are <span class="yellow-circle">&#9679</span> highlighted on the map and in the <div class="key-yellow-box">yellow box</div> on the bar chart.</h2>
+  <h2>Monthly incidents are <span class="yellow-circle">&#11044;</span> highlighted on the map and in the <div class="key-yellow-box">yellow box</div> on the bar chart.</h2>
 
   <TimeControls bind:timeIndex={timeIndex} {timePeriods} animated={true}></TimeControls>
 
@@ -73,11 +91,16 @@
       <Map {time} bind:hoveredOblastId={hoveredOblastId}/>
     </div>
     <div class="vis-container">
-      <Cartesiand3 {data} {config} {timeIndex} bind:hoveredOblastId={hoveredOblastId}>
-      </Cartesiand3>
+      {#key unique}
+        {#if isLoaded}
+          <Cartesiand3 {data} {config} {timeIndex} bind:hoveredOblastId={hoveredOblastId}>
+          </Cartesiand3>
+        {/if}
+      {/key}
     </div>
     <!-- <div class="source-text">Note:</div> -->
   </div>
+
   <div class="source-text">Source: Centre for Information Resilience</div>
 
 </div>
