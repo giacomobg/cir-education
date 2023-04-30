@@ -69,7 +69,7 @@
             >
             <h2 class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2>
             <h2 class="line">|</h2>
-            <h3 class="circle">&#11044</h3>
+            <h3 class="circle">&#11044;</h3>
             
         </Slider>
         <svg id="axis">

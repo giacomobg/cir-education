@@ -30,14 +30,6 @@ var app = (function () {
     function safe_not_equal(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
-    let src_url_equal_anchor;
-    function src_url_equal(element_src, url) {
-        if (!src_url_equal_anchor) {
-            src_url_equal_anchor = document.createElement('a');
-        }
-        src_url_equal_anchor.href = url;
-        return element_src === src_url_equal_anchor.href;
-    }
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
     }
@@ -22294,10 +22286,10 @@ var app = (function () {
     			attr_dev(line, "x2", line_x__value_1 = /*svgWidth*/ ctx[4] - 46);
     			attr_dev(line, "y2", "8");
     			attr_dev(line, "stroke", "black");
-    			add_location(line, file$1, 78, 16, 2472);
+    			add_location(line, file$1, 78, 16, 2473);
     			attr_dev(text_1, "x", text_1_x_value = /*svgWidth*/ ctx[4] - 70);
     			attr_dev(text_1, "y", "20");
-    			add_location(text_1, file$1, 79, 16, 2565);
+    			add_location(text_1, file$1, 79, 16, 2566);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, line, anchor);
@@ -22403,16 +22395,16 @@ var app = (function () {
     			attr_dev(line, "x2", "20");
     			attr_dev(line, "y2", "8");
     			attr_dev(line, "stroke", "black");
-    			add_location(line, file$1, 75, 12, 2330);
+    			add_location(line, file$1, 75, 12, 2331);
     			attr_dev(text_1, "y", "20");
-    			add_location(text_1, file$1, 76, 12, 2401);
+    			add_location(text_1, file$1, 76, 12, 2402);
     			attr_dev(svg, "id", "axis");
     			attr_dev(svg, "class", "svelte-1s5o8ca");
-    			add_location(svg, file$1, 74, 8, 2302);
+    			add_location(svg, file$1, 74, 8, 2303);
     			attr_dev(div0, "class", "slider-container svelte-1s5o8ca");
     			add_location(div0, file$1, 65, 4, 1916);
     			attr_dev(br, "class", "clear svelte-1s5o8ca");
-    			add_location(br, file$1, 85, 4, 2796);
+    			add_location(br, file$1, 85, 4, 2797);
     			attr_dev(div1, "class", "time-controls-container svelte-1s5o8ca");
     			add_location(div1, file$1, 62, 0, 1563);
     		},
@@ -22926,30 +22918,27 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
-    	let script;
-    	let script_src_value;
-    	let t0;
     	let div5;
     	let h1;
-    	let t2;
+    	let t1;
     	let h2;
-    	let t3;
+    	let t2;
     	let span;
-    	let t5;
+    	let t4;
     	let div0;
+    	let t6;
     	let t7;
-    	let t8;
     	let timecontrols;
     	let updating_timeIndex;
-    	let t9;
+    	let t8;
     	let div3;
     	let div1;
     	let map;
     	let updating_hoveredOblastId;
-    	let t10;
+    	let t9;
     	let div2;
     	let previous_key = /*unique*/ ctx[1];
-    	let t11;
+    	let t10;
     	let div4;
     	let current;
 
@@ -22989,79 +22978,72 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			script = element("script");
-    			t0 = space();
     			div5 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Damage to educational facilities in Ukraine";
-    			t2 = space();
+    			t1 = space();
     			h2 = element("h2");
-    			t3 = text("Monthly incidents are ");
+    			t2 = text("Monthly incidents are ");
     			span = element("span");
     			span.textContent = "⬤";
-    			t5 = text(" highlighted on the map and in the ");
+    			t4 = text(" highlighted on the map and in the ");
     			div0 = element("div");
     			div0.textContent = "yellow box";
-    			t7 = text(" on the bar chart.");
-    			t8 = space();
+    			t6 = text(" on the bar chart.");
+    			t7 = space();
     			create_component(timecontrols.$$.fragment);
-    			t9 = space();
+    			t8 = space();
     			div3 = element("div");
     			div1 = element("div");
     			create_component(map.$$.fragment);
-    			t10 = space();
+    			t9 = space();
     			div2 = element("div");
     			key_block.c();
-    			t11 = space();
+    			t10 = space();
     			div4 = element("div");
     			div4.textContent = "Source: Centre for Information Resilience";
-    			attr_dev(script, "type", "text/javascript");
-    			if (!src_url_equal(script.src, script_src_value = "https://pym.nprapps.org/pym.v1.min.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file, 1, 2, 16);
     			attr_dev(h1, "class", "svelte-pmgzuw");
-    			add_location(h1, file, 82, 2, 1789);
+    			add_location(h1, file, 82, 2, 1798);
     			attr_dev(span, "class", "yellow-circle svelte-pmgzuw");
-    			add_location(span, file, 83, 28, 1870);
+    			add_location(span, file, 83, 28, 1879);
     			attr_dev(div0, "class", "key-yellow-box svelte-pmgzuw");
-    			add_location(div0, file, 83, 106, 1948);
+    			add_location(div0, file, 83, 106, 1957);
     			attr_dev(h2, "class", "svelte-pmgzuw");
-    			add_location(h2, file, 83, 2, 1844);
+    			add_location(h2, file, 83, 2, 1853);
     			attr_dev(div1, "class", "vis-container svelte-pmgzuw");
-    			add_location(div1, file, 89, 4, 2220);
+    			add_location(div1, file, 89, 4, 2229);
     			attr_dev(div2, "class", "vis-container svelte-pmgzuw");
-    			add_location(div2, file, 92, 4, 2322);
+    			add_location(div2, file, 92, 4, 2331);
     			attr_dev(div3, "class", "grid svelte-pmgzuw");
-    			add_location(div3, file, 87, 2, 2109);
+    			add_location(div3, file, 87, 2, 2118);
     			attr_dev(div4, "class", "source-text svelte-pmgzuw");
-    			add_location(div4, file, 103, 2, 2609);
+    			add_location(div4, file, 103, 2, 2618);
     			attr_dev(div5, "class", "embed-container");
-    			add_location(div5, file, 80, 0, 1756);
+    			add_location(div5, file, 80, 0, 1765);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document.head, script);
-    			insert_dev(target, t0, anchor);
     			insert_dev(target, div5, anchor);
     			append_dev(div5, h1);
-    			append_dev(div5, t2);
+    			append_dev(div5, t1);
     			append_dev(div5, h2);
-    			append_dev(h2, t3);
+    			append_dev(h2, t2);
     			append_dev(h2, span);
-    			append_dev(h2, t5);
+    			append_dev(h2, t4);
     			append_dev(h2, div0);
-    			append_dev(h2, t7);
-    			append_dev(div5, t8);
+    			append_dev(h2, t6);
+    			append_dev(div5, t7);
     			mount_component(timecontrols, div5, null);
-    			append_dev(div5, t9);
+    			append_dev(div5, t8);
     			append_dev(div5, div3);
     			append_dev(div3, div1);
     			mount_component(map, div1, null);
-    			append_dev(div3, t10);
+    			append_dev(div3, t9);
     			append_dev(div3, div2);
     			key_block.m(div2, null);
-    			append_dev(div5, t11);
+    			append_dev(div5, t10);
     			append_dev(div5, div4);
     			current = true;
     		},
@@ -23112,8 +23094,6 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			detach_dev(script);
-    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div5);
     			destroy_component(timecontrols);
     			destroy_component(map);

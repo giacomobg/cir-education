@@ -1,7 +1,7 @@
-<svelte:head>
+<!-- <svelte:head>
   <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
-</svelte:head>
+</svelte:head> -->
 
 
 <script>
