@@ -6,11 +6,9 @@
 </svelte:head>
 
 <script>
-	import { getContext, createEventDispatcher } from 'svelte';
-	import { geoPath } from 'd3-geo';
-	import { raise } from 'layercake';
+	import { createEventDispatcher } from 'svelte';
 
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import mapbox from 'mapbox-gl';
 	// import 'mapbox-gl/dist/mapbox-gl.css';
 	mapbox.accessToken = "pk.eyJ1IjoiZ2lhY29tb2JnIiwiYSI6ImNsZ2Zic21xNzAwNGozcXJyNnAzcXIybHAifQ.yDFQ-IvMuP_r6y4SESSSFw";
@@ -23,6 +21,7 @@
     export let time;
 	export let hoveredOblastId = null;
 
+	// time is the month. timeStart is the month start, timeEnd is the month end, mapbox needs it converted to epoch
 	let timeStart;
 	let timeEnd;
 	$: time,
@@ -44,6 +43,8 @@
 	let style = "mapbox://styles/mapbox/light-v10";
 	let transition = 500;
 
+	// filterSchools filters all the locations within desired month
+	// filterOther is everything else
 	let filterSchools;
 	let filterOther;
 	$: filterSchools = ['all',
@@ -51,10 +52,6 @@
 		['<', ['get', 'timestamp'], timeEnd]
 	];
 	$: filterOther = ['!', filterSchools];
-	// $: filterOther = ['any',
-	// 	['<', ['get', 'timestamp'], timeStart],
-	// 	['>=', ['get', 'timestamp'], timeEnd]
-	// ];
 	
 	onMount(() => {
 		map = new mapbox.Map({
@@ -113,6 +110,7 @@
 				'line-color': "#A1A5AD",
 			}
 		})
+		// invisible fill layer for hovering over
 		map.addLayer({
 			'id': 'oblasts-fill-hover',
 			'type': 'fill',
@@ -128,6 +126,7 @@
 				// ],
 			}
 		})
+		// fill layer filtered by hovered oblast
 		map.addLayer({
 			'id': 'oblasts-fill',
 			'type': 'fill',
@@ -139,6 +138,7 @@
 				'fill-color': "#507262"
 			}
 		});
+		// country outline for style purposes
 		map.addLayer({
 			'id': 'ukraine-line',
 			'type': 'line',
@@ -151,6 +151,7 @@
 			}
 		})
 
+		// locations for other months to sit back on map
 		map.addLayer({
 			'id': 'schools-other',
 			'type': 'circle',
@@ -165,6 +166,7 @@
 				// 'circle-stroke-opacity': 0.5
 			}
 		});
+		// location for current month to be highlighted on map
 		map.addLayer({
 			'id': 'schools-current',
 			'type': 'circle',
@@ -182,35 +184,36 @@
 			}
 		});
 
-		function filterByOblast() {
-			map.setFilter('oblasts-fill', [
-				'==',
-				['get', 'ADM1_PCODE'],
-				hoveredOblastId
-			]);
-		}
-		
+
+		// select oblast if hovered
 		map.on('mousemove', 'oblasts-fill-hover', (e) => {
 			hoveredOblastId = e.features[0].properties.ADM1_PCODE;
 			filterByOblast();
 		});
 		
-		// When the mouse leaves the state-fill layer, update the feature state of the
-		// previously hovered feature.
+		// deselect oblast
 		map.on('mouseleave', 'oblasts-fill-hover', () => {
 			hoveredOblastId = null;
 			filterByOblast();
 		});
 	};
 
-	function handleMousemove(feature) {
-		dispatch('mousemove', feature);
+	// highlight currently selected oblast
+	function filterByOblast() {
+		map.setFilter('oblasts-fill', [
+			'==',
+			['get', 'ADM1_PCODE'],
+			hoveredOblastId
+		]);
 	}
-
+	
+	// the order of operations is a little complicated.
 	$: if (time && map && map.getLayer('schools-other') && map.getLayer('schools-current')) {
+		// Transition out old locations, add them back into background
 		map.setFilter('schools-other', ['all', true])
 		map.setPaintProperty('schools-current', 'circle-opacity', 0)
 			.setPaintProperty('schools-current', 'circle-stroke-opacity', 0);
+		// Then transition in new locations, then remove them from background
 		setTimeout(() => {
 			map.setFilter('schools-current', filterSchools);
 			map.setPaintProperty('schools-current', 'circle-opacity', 1)
@@ -220,12 +223,9 @@
 			}, transition);
 		}, transition);
 	};
-	$: if (map && map.getLayer('oblasts-fill')) {
-		map.setFilter('oblasts-fill', [
-			'==',
-			['get', 'ADM1_PCODE'],
-			hoveredOblastId
-		]);
+	// when hoveredOblastId changes, update filtered oblast
+	$: if (hoveredOblastId && map && map.getLayer('oblasts-fill')) {
+		filterByOblast();
 	}
 
   </script>

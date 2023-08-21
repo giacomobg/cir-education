@@ -20,6 +20,7 @@
         let g = select("g.column."+data.oblast)
             .attr("transform", "translate(" + margin.left + "," + margin.top +")");
         
+        // add bars of bar chart
         g.selectAll("rect")
             .data(chart_data)
             .enter()
@@ -31,6 +32,7 @@
             .attr("height", yScale.bandwidth() )
             .attr("fill", "#566979")
         
+        // add direct numerical labels to bars
         g.selectAll("text.labels")
             .data(chart_data)
             .enter()
@@ -40,6 +42,7 @@
             .text(d => d.value)
             .style("fill", '#666')
 
+        // add oblast as column title
         g.append("text")
             .datum(data.oblast)
             .text(d => d)
@@ -64,7 +67,9 @@
 
 </script>
 
+<!-- group for adding visual elements to -->
 <g class={"column " + data.oblast}></g>
+<!-- make a rectangle for hovering over -->
 <rect class="hover-rect"
     x={xScale(data.oblast)+margin.left}
     y=0

@@ -16,17 +16,21 @@
     // dispatch('message', timePeriods[timeIndex]);
 
     function goBack() {
+        // subtract 1 from timeIndex unless we zeroed already
         timeIndex = Math.max(0, timeIndex - 1);
     }
     function goForwards() {
+        // add 1 to timeIndex unless we maxed out already
         timeIndex = Math.min(timePeriods.length-1, timeIndex+1);
     }
 
     function animate() {
         if (playing) {
+            // stop animating when we reach the end
             if (timeIndex == timePeriods.length-2) {
                 playing = false;
             };
+            // if we animate from the end, expected behaviour is to restart
             if (timeIndex == timePeriods.length-1) {
                 timeIndex = 0;
             } else {
@@ -41,9 +45,10 @@
     if (playing) play(); // set to play automatically from start
     $: if (!playing) clearInterval(intervalID);
 
-    $: console.log("timeIndex: ", timeIndex);
     let value = [0,100];
+    // when slider value changes update time
     $: setTimeIndex(value[0]);
+    // when time changes update slider value
     $: setValue(timeIndex);
 
     function setValue(t) {
@@ -54,6 +59,7 @@
     }
 
     onMount(() => {
+        // Set svgWidth so it knows where to place the tick marks
         if (document.getElementById('axis')) svgWidth = document.getElementById('axis').getBoundingClientRect().width;
     });
 
@@ -64,14 +70,18 @@
     <!-- <h2 class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2> -->
     <button on:click={() => {playing = !playing; if (playing) {animate();play();}} } class="play-pause">{playing ? 'Pause' : (timeIndex == timePeriods.length-1 ? 'Replay' : 'Play')}</button>
     <div class="slider-container">
+        <!-- Stop the animation from playing if the user uses the slider -->
         <Slider bind:value min=0 max={timePeriods.length-1}
             on:input={() => playing=false}
             >
+            <!-- Add marker and month name to slider -->
             <h2 class="month">{timePeriods[timeIndex].toLocaleString("en-GB", { year: "numeric", month: "long"})}</h2>
             <h2 class="line">|</h2>
             <h3 class="circle">&#11044;</h3>
             
         </Slider>
+
+        <!-- Add ticks -->
         <svg id="axis">
             <line x1="20" y1="0" x2="20" y2="8" stroke="black"></line>
             <text y="20">Feb '22</text>
@@ -80,6 +90,7 @@
                 <text x={svgWidth-70} y="20">Feb '23</text>
             {/if}
         </svg>
+
     </div>
     <!-- <button on:click={goBack} class="back">&lt;</button> -->
     <!-- <button on:click={goForwards} class="forward">&gt;</button> -->
@@ -159,6 +170,7 @@
         margin-left: 20px;
     }
 
+    /* change slider colours */
     :root {
     --track-bg: #B2BFCC;
     --progress-bg: #B2BFCC;

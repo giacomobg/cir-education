@@ -12,7 +12,6 @@ import copy from 'rollup-plugin-copy-merge';
 import config from './config.json';
 
 const production = !process.env.ROLLUP_WATCH;
-const cssFile = config.theme === 'ns' ? "ns" : 'gd';
 
 export default {
 	input: 'src/main.js',
@@ -27,7 +26,7 @@ export default {
 
 		copy({
 			targets: [
-			  { src: ['src/css/global-base.css', 'src/css/global-' + cssFile + '.css'], file: 'public/global.css' },
+			  { src: ['src/css/global-base.css'], file: 'public/global.css' },
 			]
 		}),
 		// Allow for importing csv files as modules

@@ -2,9 +2,10 @@
   import { feature } from 'topojson-client';
 
   import MapSvg from '../components/map/mapSvg.svelte';
-  import Select from 'svelte-select';
 
+  // master time variable converted to Date type
   export let time;
+  // master oblast id variable
   export let hoveredOblastId;
   let locations;
   let oblasts;

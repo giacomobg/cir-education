@@ -19,6 +19,7 @@
     let yScale;
     let innerXScale;
 
+    // get dates from data, ignoring unwanted column titles
     const dates = Object.keys(data[0]).filter(d => (d !== config?.xKey) & (d !== config?.xKeyCode));
     const oblasts = data.map(d => d.oblast)
     const oblast_codes = data.map(d => d.oblast_code)
@@ -28,7 +29,7 @@
         })
     });
 
-
+    // Get max values so we know how big to make inner X scale's domain
     const max = data.map(d =>
         Math.max(...Object.values(d).filter(val => Number.isInteger(val)))
     );
@@ -42,10 +43,10 @@
         let height = parseInt(svg.style("height"))-margin.top-margin.bottom;
         let width = parseInt(svg.style("width"))-margin.left-margin.right;
 
+        // set scales
         xScale = scaleBand()
             .domain(oblasts)
             .range([0, width]);
-
         innerXScale = scaleLinear()
             .domain([0, Math.max(...max)+2])
             .range([0,xScale.bandwidth()-12]);
@@ -53,6 +54,7 @@
             .domain(dates)
             .range([0, height]);
         
+        // draw yAxis
         let format = timeFormat("%b '%y");
         let yAxis = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -89,6 +91,7 @@
 
     });
 
+    // update highlight rectange with new timepoint
     $: if (yScale) {
         timeIndex,
         select("rect.highlight-rect")

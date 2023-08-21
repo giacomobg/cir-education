@@ -90,3 +90,69 @@ button {
 	font-size: 16px;
 	border: #666 1px solid;
 }
+
+html {
+	font-size: 18px;
+	line-height: 28px;
+}
+
+body {
+	color: #252524;
+}
+
+.embed-container {  
+	font-size: 0.667rem;
+	line-height: 0.888rem;
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: 100% 99%;
+	padding-bottom: 30px;
+}
+
+.chart-container .tick text {
+	fill: #252524;
+	font-size: 0.667rem;
+	line-height: 0.888rem;
+}
+
+.chart-container .tick line {
+	stroke-width: 1px;
+	stroke: #ccc;
+	stroke-opacity: 0.5;
+	stroke-dasharray: 0;
+}
+
+.chart-container .y-axis .tick.tick-0 line {
+	stroke: #252524;
+	stroke-opacity: 1;
+}
+
+.chart-container .x-axis .baseline {
+	stroke-dasharray: 0;
+}
+
+.small-multiple-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+ }
+
+.small-multiple, .simple-chart-container {
+    box-sizing: border-box;
+    margin: 8px;
+ }
+
+
+.source-text {
+    /* color: #444; */
+    margin: 8px 0;
+    font-size: 0.667rem;
+    line-height: 0.888rem;
+}
+.source-text a {
+	/* color: #444; */
+}
+.source-text a:hover {
+    color: #252524;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}

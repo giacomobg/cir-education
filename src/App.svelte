@@ -1,24 +1,21 @@
 <script>
   import { onMount } from 'svelte';
-  import { csvParse } from 'd3-dsv';
-  import { format } from 'd3-format';
-  import {feature} from 'topojson-client';
-
-  import html2canvas from 'html2canvas';
 
   import Map from './graphics/map.svelte';
   import Cartesiand3 from './graphics/cartesiand3.svelte';
   import TimeControls from './components/TimeControls.svelte';
 
   import data from './data/data.csv'
-  import { each } from 'svelte/internal';
 
   console.log('Data visualisation by Giacomo Boscaini-Gilroy');
 
   let pymChild = null;
+  // for key block
   let unique = {};
 
+  // master oblast id variable
   let hoveredOblastId;
+
   let config = {
     margin: {
       top: 13,
@@ -33,6 +30,7 @@
 
   let isLoaded=false;
 
+  // master time variable
   let timeIndex = 0;
   let timePeriods = [ // Feb '22 to Feb '23
       new Date("2022", "01"),
@@ -62,6 +60,7 @@
       setTimeout(() => isLoaded = true, 250);
   });
 
+  // unique is passed to a key block, so resetting it redraws the bar chart
   function onResize() {
     unique = {};
   }
