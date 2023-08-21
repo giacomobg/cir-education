@@ -1,3 +1,10 @@
+## CIR Education project
+
+An interactive map of CIR-recorded instances of damage to educational establishments in the first year of the Ukraine war.
+
+Developed with Svelte
+Compiled with Rollup
+
 ## Developing
 
 ```sh
